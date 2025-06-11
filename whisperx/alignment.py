@@ -418,7 +418,8 @@ def get_wildcard_emission(frame_emission, tokens, blank_id):
     assert 0 <= blank_id < len(frame_emission)
 
     # Convert tokens to a tensor if they are not already
-    tokens = torch.tensor(tokens) if not isinstance(tokens, torch.Tensor) else tokens
+    # tokens = torch.tensor(tokens) if not isinstance(tokens, torch.Tensor) else tokens
+    tokens = torch.tensor([0] if len(tokens) == 0 else tokens) if not isinstance(tokens, torch.Tensor) else tokens
 
     # Create a mask to identify wildcard positions
     wildcard_mask = (tokens == -1)
